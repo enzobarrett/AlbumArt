@@ -11,8 +11,8 @@ var defaultOptions = {
   signature_version: '1',
   data_type:'audio',
   secure: true,
-  access_key: 'bcacbe6296109108e0d224c8319ba6d4',
-  access_secret: 'zcCHm293yudexfIRSsdcQRdiujxIt2BzPBKAI1JR'
+  access_key: 'de887723b731fc823ea804917d7deb71',
+  access_secret: 'S9tixbk2SxW5Xp824eoKITkiXbrnnS6XfvfrnuPx'
 };
 
 function buildStringToSign(method, uri, accessKey, dataType, signatureVersion, timestamp) {
