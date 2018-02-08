@@ -6,13 +6,13 @@ var request = require('request');
 
 // Replace "###...###" below with your project's host, access_key and access_secret.
 var defaultOptions = {
-  host: '###YOUR_HOST###',
+  host: 'identify-us-west-2.acrcloud.com',
   endpoint: '/v1/identify',
   signature_version: '1',
   data_type:'audio',
   secure: true,
-  access_key: '###YOUR_ACCESS_KEY###',
-  access_secret: '###YOUR_ACCESS_SECRET###'
+  access_key: 'bcacbe6296109108e0d224c8319ba6d4',
+  access_secret: 'zcCHm293yudexfIRSsdcQRdiujxIt2BzPBKAI1JR'
 };
 
 function buildStringToSign(method, uri, accessKey, dataType, signatureVersion, timestamp) {
