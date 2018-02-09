@@ -1,9 +1,12 @@
 var url = require('url');
 var fs = require('fs');
 var crypto = require('crypto');
+var cmd = require('node-cmd');
 //npm install request
 var request = require('request');
-
+var SpotifyWebApi = require('spotify-web-api-node');
+var token;
+var id;
 // Replace "###...###" below with your project's host, access_key and access_secret.
 var defaultOptions = {
   host: 'identify-us-west-2.acrcloud.com',
@@ -63,4 +66,44 @@ var bitmap = fs.readFileSync('sample.wav');
 identify(new Buffer(bitmap), defaultOptions, function (err, httpResponse, body) {
   if (err) console.log(err);
   console.log(body);
+  var obj = JSON.parse(body);
+  id = obj.metadata.music[0].external_metadata.spotify.album.id;
+  console.log(id);
+  var spotifyApi = new SpotifyWebApi({
+    clientId : 'a94bf8f3f1964687b2335820c1763f08',
+    clientSecret : 'd34f25407e8d46adaeb2c1708f992173',
+  });
+
+  // Retrieve an access token
+  spotifyApi.clientCredentialsGrant()
+    .then(function(data) {
+      //console.log('The access token expires in ' + data.body['expires_in']);
+      //console.log('The access token is ' + data.body['access_token']);
+      token = data.body['access_token'];
+      //console.log(token);
+      // Save the access token so that it's used in future calls
+      spotifyApi.setAccessToken(data.body['access_token']);
+      setTimeout(function() {
+        var curl = "curl -X GET \"https://api.spotify.com/v1/albums/" + id + "\"" + " -H \"Authorization: Bearer " + token + "\"";
+        console.log(curl);
+        cmd.get(
+       curl,
+       function(err, data, stderr){
+         var obj = JSON.parse(data);
+          var link = obj.images[0].url;
+          var command = "xdg-open " + link;
+          cmd.run(command);
+      }
+       );
+      }, 2000)
+    }, function(err) {
+      console.log('Something went wrong when retrieving an access token', err.message);
+  });
+  function applycurl() {
+
+  }
+
+//cmd.run(curl)
+
+
 });
