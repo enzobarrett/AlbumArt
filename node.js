@@ -2,12 +2,15 @@ var url = require('url');
 var fs = require('fs');
 var crypto = require('crypto');
 var cmd = require('node-cmd');
+var sleep = require('sleep');
 //npm install request
 var request = require('request');
 var SpotifyWebApi = require('spotify-web-api-node');
 var token;
 var id;
+var songtime;
 // Replace "###...###" below with your project's host, access_key and access_secret.
+while(1==1) {
 var defaultOptions = {
   host: 'identify-us-west-2.acrcloud.com',
   endpoint: '/v1/identify',
@@ -68,6 +71,8 @@ identify(new Buffer(bitmap), defaultOptions, function (err, httpResponse, body) 
   console.log(body);
   var obj = JSON.parse(body);
   id = obj.metadata.music[0].external_metadata.spotify.album.id;
+  songtime = obj.metadata.played_duration;
+  console.log(songtime);
   console.log(id);
   var spotifyApi = new SpotifyWebApi({
     clientId : 'a94bf8f3f1964687b2335820c1763f08',
@@ -107,3 +112,5 @@ identify(new Buffer(bitmap), defaultOptions, function (err, httpResponse, body) 
 
 
 });
+sleep.sleep(songtime);
+};
