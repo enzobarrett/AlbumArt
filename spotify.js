@@ -16,8 +16,8 @@ var SpotifyWebApi = require('spotify-web-api-node');
  * https://developer.spotify.com/my-applications
  */
 var spotifyApi = new SpotifyWebApi({
-  clientId : 'a94bf8f3f1964687b2335820c1763f08',
-  clientSecret : 'd34f25407e8d46adaeb2c1708f992173',
+  clientId : '',
+  clientSecret : '',
 });
 
 // Retrieve an access token
@@ -35,8 +35,8 @@ spotifyApi.clientCredentialsGrant()
 /*
 // credentials are optional
 var spotifyApi = new SpotifyWebApi({
-  clientId : ' a94bf8f3f1964687b2335820c1763f08',
-  clientSecret : 'd34f25407e8d46adaeb2c1708f992173',
+  clientId : '',
+  clientSecret : '',
 });
 
 spotifyApi.getAlbums(['631tfYWQsACU5Kmk8dpqli'])
