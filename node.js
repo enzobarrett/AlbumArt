@@ -16,8 +16,8 @@ var defaultOptions = {
   signature_version: '1',
   data_type:'audio',
   secure: true,
-  access_key: 'de887723b731fc823ea804917d7deb71',
-  access_secret: 'S9tixbk2SxW5Xp824eoKITkiXbrnnS6XfvfrnuPx'
+  access_key: '',
+  access_secret: ''
 };
 
 function buildStringToSign(method, uri, accessKey, dataType, signatureVersion, timestamp) {
@@ -72,8 +72,8 @@ identify(new Buffer(bitmap), defaultOptions, function (err, httpResponse, body) 
   id = obj.metadata.music[0].external_metadata.spotify.album.id;
   console.log(id);
   var spotifyApi = new SpotifyWebApi({
-    clientId : 'a94bf8f3f1964687b2335820c1763f08',
-    clientSecret : 'd34f25407e8d46adaeb2c1708f992173',
+    clientId : '',
+    clientSecret : '',
   });
 
   // Retrieve an access token
